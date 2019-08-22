@@ -27,7 +27,7 @@ public class Token {
 	}
 
 	public int getTokenNumber() {
-		return tokenAtomicNumber.getAndIncrement();
+		return this.getTokenNumber();
 	}
 
 	public void setTokenNumber(int tokenNumber) {
@@ -35,7 +35,7 @@ public class Token {
 	}
 
 	public int getCounterNumber() {
-		return counterService.getCounterNumber();
+		return this.getCounterNumber();
 	}
 
 	public void setCounterNumber(int counterNumber) {
@@ -43,7 +43,7 @@ public class Token {
 	}
 
 	public String getToken() {
-		return this.getTokenNumber() +" "+this.getCounterNumber();
+		return this.getToken();
 	}
 
 	public void setToken(String token) {

@@ -1,18 +1,19 @@
 package com.docplexus.tokensystem.model;
 
+import java.util.LinkedList;
 import java.util.Objects;
 import java.util.PriorityQueue;
 
 public class Counter {
 
 	int numberOfCustomers;
-	PriorityQueue<Token> queue;
+	LinkedList<Token> queue;
 	int counterNumber;
 
 	public Counter(int counterNumber) {
 		this.counterNumber = counterNumber;
 		numberOfCustomers = 0;
-		queue = new PriorityQueue<>();
+		queue = new LinkedList<>();
 	}
 
 	/**
@@ -32,7 +33,7 @@ public class Counter {
 	/**
 	 * @return the queue
 	 */
-	public PriorityQueue<Token> getQueue() {
+	public LinkedList<Token> getQueue() {
 		return queue;
 	}
 
@@ -40,8 +41,18 @@ public class Counter {
 	 * @param queue the queue to set
 	 */
 	public void addQueue(Token token) {
+		addQueue(token,0);
 		if (!Objects.isNull(token))
 			this.queue.add(token);
+		
+	}
+	
+	public void addQueue(Token token, int index) {
+		if (!Objects.isNull(token) && index == 0)
+			this.queue.add(token);
+		if (!Objects.isNull(token) && index != 0)
+			this.queue.add(index,token);
+		
 	}
 
 	/**
@@ -59,7 +70,8 @@ public class Counter {
 	}
 	
 	public void resetCounter() {
-		
+		this.numberOfCustomers = 1;
+		this.queue.clear();
 	}
 
 }

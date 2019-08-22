@@ -2,7 +2,7 @@ package com.docplexus.tokensystem.model;
 
 import java.util.Objects;
 
-public class Account {
+public class User {
 
 	private long mobileNo;
 	private String emailId;
@@ -10,10 +10,10 @@ public class Account {
 	private String lastName;
 	private boolean isPrivileged;
 
-	public Account() {
+	public User() {
 	}
 
-	public Account(long mobileNo, String emailId, String firstName, String lastName, boolean isPrivileged) {
+	public User(long mobileNo, String emailId, String firstName, String lastName, boolean isPrivileged) {
 		super();
 		this.mobileNo = mobileNo;
 		this.emailId = emailId;
@@ -75,10 +75,10 @@ public class Account {
 		if (obj == null) {
 			return false;
 		}
-		if (!(obj instanceof Account)) {
+		if (!(obj instanceof User)) {
 			return false;
 		}
-		Account other = (Account) obj;
+		User other = (User) obj;
 		return Objects.equals(emailId, other.emailId) && mobileNo == other.mobileNo;
 	}
 	

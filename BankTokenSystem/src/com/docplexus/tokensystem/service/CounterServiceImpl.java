@@ -8,6 +8,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import com.docplexus.tokensystem.model.Counter;
+import com.docplexus.tokensystem.model.User;
 
 /**
  * @author sagar.amrutkar
@@ -29,13 +30,12 @@ public class CounterServiceImpl implements ICounterService {
 	}
 
 	@Override
-	public int getCounterNumber() {
+	public Counter getCounter(User user) {
 		Optional<Counter> counter = counterList.stream()
 			.collect(Collectors.minBy(Comparator.comparing(Counter::getNumberOfCustomers)));
-		int counterNumber = 0;
 		if(counter.isPresent())
-			counterNumber = counter.get().getCounterNumber();
-		return counterNumber;
+			return counter.get();
+		return null;
 	}
 
 	@Override
