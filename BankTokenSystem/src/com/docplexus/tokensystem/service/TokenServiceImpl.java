@@ -1,5 +1,6 @@
 package com.docplexus.tokensystem.service;
 
+import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import com.docplexus.tokensystem.model.Counter;
@@ -22,20 +23,27 @@ public class TokenServiceImpl implements ITokenService {
 
 	@Override
 	public Token genrateToken(User user) {
-		
+
 		Counter counter = counterService.getCounter(user);
-		int tokenNumber = genrateTokenNumber();
-		Token token = new Token();
-		token.setCounterNumber(counter.getCounterNumber());
-		token.setToken(tokenNumber+" "+counter.getCounterNumber());
-		token.setTokenNumber(tokenNumber);
-		
-		if(user.isPrivileged())
-			counter.addQueue(token,0);
-		else
-			counter.addQueue(token);
-		
-		return token;
+		if (!Objects.isNull(counter)) {
+			System.out.println("Genrating token ......................................................");
+			int tokenNumber = genrateTokenNumber();
+			Token token = new Token();
+			token.setTokenNumber(tokenNumber);
+			token.setToken("TokenNumber:"+tokenNumber + "," + "CounterNumber:"+counter.getCounterNumber());
+			if (user.isPrivileged()) { 
+				System.out.println(user.getFirstName()+" "+user.getLastName()+" is privileged user, moving ahead in the queue");
+				counter.addQueue(token, 0);
+			}
+			else
+				counter.addQueue(token);
+			counter.addNumberOfCustomers();
+			token.setCounter(counter);
+			return token;
+		} else {
+			System.out.println("Something is wrong with the system. Please try after some time....!!!");
+			return null;
+		}
 	}
 
 	@Override

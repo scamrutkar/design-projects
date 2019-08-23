@@ -24,16 +24,29 @@ public class CounterServiceImpl implements ICounterService {
 
 	private void createCounter() {
 		int count = 0;
+		System.out.println("Started creating counters...............!!!!!!!");
 		while (count < TOTAL_COUNTER) {
-			counterList.add(new Counter(count+1));
+			counterList.add(new Counter(count + 1));
+			count++;
+		}
+		printCounters();
+	}
+
+	private void printCounters() {
+		int count = 0;
+		System.out.println("Creating Counter ");
+		System.out.println("====================================================================================== ");
+		while (count < TOTAL_COUNTER) {
+			System.out.println(counterList.get(count).toString());
+			count++;
 		}
 	}
 
 	@Override
 	public Counter getCounter(User user) {
 		Optional<Counter> counter = counterList.stream()
-			.collect(Collectors.minBy(Comparator.comparing(Counter::getNumberOfCustomers)));
-		if(counter.isPresent())
+				.collect(Collectors.minBy(Comparator.comparing(Counter::getNumberOfCustomers)));
+		if (counter.isPresent())
 			return counter.get();
 		return null;
 	}

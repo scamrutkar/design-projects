@@ -2,11 +2,6 @@ package com.docplexus.tokensystem.model;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
-import com.docplexus.tokensystem.service.CounterServiceImpl;
-import com.docplexus.tokensystem.service.ICounterService;
-import com.docplexus.tokensystem.service.ITokenService;
-import com.docplexus.tokensystem.service.TokenServiceImpl;
-
 /**
  * @author sagar.amrutkar
  *
@@ -15,15 +10,11 @@ public class Token {
 
 	AtomicInteger tokenAtomicNumber = new AtomicInteger(1);
 	private int tokenNumber;
-	private int counterNumber;
+	private Counter counter;
 	private String token;
-	
-	ITokenService tokenService;
-	ICounterService counterService;
 
 	public Token() {
-		tokenService = new TokenServiceImpl();
-		counterService = new CounterServiceImpl();
+
 	}
 
 	public int getTokenNumber() {
@@ -34,12 +25,12 @@ public class Token {
 		this.tokenNumber = tokenNumber;
 	}
 
-	public int getCounterNumber() {
-		return this.getCounterNumber();
+	public Counter getCounter() {
+		return counter;
 	}
 
-	public void setCounterNumber(int counterNumber) {
-		this.counterNumber = counterNumber;
+	public void setCounter(Counter counter) {
+		this.counter = counter;
 	}
 
 	public String getToken() {
@@ -52,7 +43,12 @@ public class Token {
 
 	@Override
 	public String toString() {
-		return "Token [tokenNumber=" + tokenNumber + ", counterNumber=" + counterNumber + ", token=" + token + "]";
+		StringBuilder builder = new StringBuilder();
+		builder.append("Token Genrated.................!!!!!!!!!!!!!!!!!").append("\n")
+					.append("Token Number : ").append(token).append("\n")
+					.append("Number of customers waiting in the queue are : ").append(counter.getNumberOfCustomers()).append("\n")
+					.append("========================================================================================");
+		return builder.toString();
 	}
 
 }
