@@ -34,7 +34,6 @@ public class CounterServiceImpl implements ICounterService {
 
 	private void printCounters() {
 		int count = 0;
-		System.out.println("Creating Counter ");
 		System.out.println("====================================================================================== ");
 		while (count < TOTAL_COUNTER) {
 			System.out.println(counterList.get(count).toString());
