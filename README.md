@@ -1,6 +1,6 @@
 # design-projects
 
-Output of final execution of the project is as follow: 
+# Output of final execution of the project is as follow: 
 
 Started creating counters...............!!!!!!!
 
